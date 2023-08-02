@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Country Quiz</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+        <script defer>
+            document.addEventListener("DOMContentLoaded", () => {
+                var alertDuration = 1000;
+                function removeAlert() {
+                    let elements = document.getElementsByClassName("alert");
+                    for (let elem of elements) {
+                        elem.parentNode.removeChild(elem);
+                    }
+                }
+                setTimeout(removeAlert, alertDuration);
+            });
+        </script>
+    </head>
+
+    <body>
+        <nav class="navbar bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">Country Quiz</a>
+          </div>
+        </nav>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div {% if message.extra_tags %} class="alert alert-dismissible fade show alert-{{ message.extra_tags }}"{% endif %}>
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="d-flex justify-content-center align-items-center m-4 p-4 card text-bg-info">
+        <div class="card-body">
+            {% block content %}{% endblock content %}
+        </div>
+    </div>
+    </body>
+</html>
